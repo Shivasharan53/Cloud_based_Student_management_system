@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>Student Portal</h3>
+  <form method="post">
+    <label>Student ID</label><input name="student_id" required>
+    <label>Date of Birth (YYYY-MM-DD)</label><input name="dob" required>
+    <button type="submit">View My Records</button>
+  </form>
+</div>
+{% endblock %}
