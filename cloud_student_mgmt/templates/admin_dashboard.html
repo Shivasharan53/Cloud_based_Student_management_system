@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="nav">
+    <a href="{{ url_for('admin_dashboard') }}"><button>Dashboard</button></a>
+    <a href="{{ url_for('admin_logout') }}"><button class="secondary">Logout</button></a>
+  </div>
+  <h3>Add / Update Student</h3>
+  <form method="post" action="{{ url_for('add_student') }}">
+    <label>Student ID</label><input name="student_id" required>
+    <label>Name</label><input name="name" required>
+    <label>Email</label><input type="email" name="email">
+    <label>Class</label><input name="std_class">
+    <label>Section</label><input name="section">
+    <label>Date of Birth (YYYY-MM-DD)</label><input name="dob" placeholder="2006-04-30">
+    <button type="submit">Save Student</button>
+  </form>
+</div>
+
+<div class="card">
+  <h3>Add Grade</h3>
+  <form method="post" action="{{ url_for('add_grade') }}">
+    <label>Student ID</label><input name="student_id" required>
+    <label>Subject</label><input name="subject" required>
+    <label>Score</label><input name="score" required>
+    <label>Term</label><input name="term" placeholder="Midterm/Final">
+    <button type="submit">Add Grade</button>
+  </form>
+</div>
+
+<div class="card">
+  <h3>Mark Attendance</h3>
+  <form method="post" action="{{ url_for('mark_attendance') }}">
+    <label>Student ID</label><input name="student_id" required>
+    <label>Date (YYYY-MM-DD)</label><input name="date" placeholder="{{ today }}">
+    <label>Status</label>
+    <select name="status">
+      <option>Present</option>
+      <option>Absent</option>
+      <option>Excused</option>
+    </select>
+    <button type="submit">Mark</button>
+  </form>
+</div>
+
+<div class="card">
+  <h3>All Students</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Name</th><th>Class</th><th>Section</th></tr></thead>
+    <tbody>
+      {% for s in students %}
+        <tr><td>{{ s.id }}</td><td>{{ s.get('name') }}</td><td>{{ s.get('std_class') }}</td><td>{{ s.get('section') }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

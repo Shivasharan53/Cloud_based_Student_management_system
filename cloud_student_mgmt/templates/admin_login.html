@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h3>Admin Login</h3>
+  <form method="post">
+    <label>Username</label>
+    <input name="username" required>
+    <label>Password</label>
+    <input name="password" type="password" required>
+    <div class="nav">
+      <button type="submit">Log in</button>
+      <a href="{{ url_for('home') }}"><button class="secondary" type="button">Back</button></a>
+    </div>
+  </form>
+</div>
+{% endblock %}
